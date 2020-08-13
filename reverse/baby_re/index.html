@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Language" content="en">
+
+    <meta name="author" content="Muktheeswaran (natzsec)">
+    <meta name="description" content="Baby_RE We are going to do reverse engineering to get a Flag from the given Executable
+Download the file from the challege tab in Challenge &gt; Reversing
+Download link : Baby_RE.
+Password: hackthebox
+Lets check what kind of file it is first.
+root@natzsec:~/Desktop/htb/challenges/reverse# file baby  baby: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=25adc53b89f781335a27bf1b81f5c4cb74581022, for GNU/Linux 3.2.0, not stripped   Baby_RE, &ldquo;Details of file using file Utility&rdquo; by natzsec">
+    <meta name="keywords" content="blog,hacker,personal,security">
+
+    
+      <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+    
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Baby_RE"/>
+<meta name="twitter:description" content="Baby_RE We are going to do reverse engineering to get a Flag from the given Executable
+Download the file from the challege tab in Challenge &gt; Reversing
+Download link : Baby_RE.
+Password: hackthebox
+Lets check what kind of file it is first.
+root@natzsec:~/Desktop/htb/challenges/reverse# file baby  baby: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=25adc53b89f781335a27bf1b81f5c4cb74581022, for GNU/Linux 3.2.0, not stripped   Baby_RE, &ldquo;Details of file using file Utility&rdquo; by natzsec"/>
+
+    <meta property="og:title" content="Baby_RE" />
+<meta property="og:description" content="Baby_RE We are going to do reverse engineering to get a Flag from the given Executable
+Download the file from the challege tab in Challenge &gt; Reversing
+Download link : Baby_RE.
+Password: hackthebox
+Lets check what kind of file it is first.
+root@natzsec:~/Desktop/htb/challenges/reverse# file baby  baby: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=25adc53b89f781335a27bf1b81f5c4cb74581022, for GNU/Linux 3.2.0, not stripped   Baby_RE, &ldquo;Details of file using file Utility&rdquo; by natzsec" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.natzsec.com/reverse/baby_re/" />
+<meta property="article:published_time" content="2020-08-13T20:40:21+05:30" />
+<meta property="article:modified_time" content="2020-08-13T20:40:21+05:30" />
+
+
+    
+      <base href="https://www.natzsec.com/reverse/baby_re/">
+    
+    <title>
+  Baby_RE · natzsec
+</title>
+
+    
+      <link rel="canonical" href="https://www.natzsec.com/reverse/baby_re/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="https://www.natzsec.com/css/coder.min.3219ef62ae52679b7a9c19043171c3cd9f523628c2a65f3ef247ee18836bc90b.css" integrity="sha256-MhnvYq5SZ5t6nBkEMXHDzZ9SNijCpl8&#43;8kfuGINryQs=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="https://www.natzsec.com/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://www.natzsec.com/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.74.3" />
+  </head>
+
+  
+  
+  <body class="colorscheme-light"
+        onload=" twemoji.parse(document.body); "
+  >
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="https://www.natzsec.com/">
+      natzsec
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.natzsec.com/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.natzsec.com/posts/">Ctf-Writeups</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.natzsec.com/reverse/">Reverse Engineering</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.natzsec.com/projects/">Projects</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="https://www.natzsec.com/contact/">Contact me</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container page">
+  <article>
+    <header>
+      <h1>Baby_RE</h1>
+    </header>
+
+    <h2 id="baby_re">Baby_RE</h2>
+<p><strong>We are going to do reverse engineering to get a Flag from the given Executable</strong></p>
+<p>Download the file from the challege tab in Challenge &gt; Reversing</p>
+<p>Download link : <a href="https://www.hackthebox.eu/home/challenges/download/92" title="title text!">Baby_RE</a>.</p>
+<p>Password: <code>hackthebox</code></p>
+<p>Lets check what kind of file it is first.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">root<span style="color:#f00">@</span>natzsec<span style="color:#f00">:~/</span>Desktop<span style="color:#f00">/</span>htb<span style="color:#f00">/</span>challenges<span style="color:#f00">/</span>reverse<span style="color:#007f7f"># file baby </span>
+baby<span style="color:#f00">:</span> ELF <span style="color:#ff0;font-weight:bold">64</span><span style="color:#f00">-</span>bit LSB shared object, x86<span style="color:#ff0;font-weight:bold">-64</span>, version <span style="color:#ff0;font-weight:bold">1</span> <span style="color:#f00">(</span>SYSV<span style="color:#f00">)</span>, dynamically linked, interpreter <span style="color:#f00">/</span>lib64<span style="color:#f00">/</span>ld<span style="color:#f00">-</span>linux<span style="color:#f00">-</span>x86<span style="color:#ff0;font-weight:bold">-64</span>.so.<span style="color:#ff0;font-weight:bold">2</span>, BuildID[sha1]=<span style="color:#ff0;font-weight:bold">25</span>adc53b89f781335a27bf1b81f5c4cb74581022, for GNU<span style="color:#f00">/</span>Linux <span style="color:#ff0;font-weight:bold">3.2</span>.<span style="color:#ff0;font-weight:bold">0</span>, not stripped
+</code></pre></div><figure>
+    <img src="https://www.natzsec.com/images/babyre1.png"
+         alt="Baby_RE, &amp;ldquo;Details of file using file Utility&amp;rdquo; by natzsec"/> <figcaption>
+            <p>Baby_RE, &ldquo;Details of file using file Utility&rdquo; by natzsec</p>
+        </figcaption>
+</figure>
+
+<p>It says it is a <code>ELF 64</code> bit application file.</p>
+<p>Now we know what kind of file type is, so we can now check if there are any readable strings in this executable.</p>
+<p>we can use the <code>strings</code> utility against the file.</p>
+<p>If we take a look at the strings there are intresting things in it.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">root<span style="color:#f00">@</span>natzsec<span style="color:#f00">:~/</span>Desktop<span style="color:#f00">/</span>htb<span style="color:#f00">/</span>challenges<span style="color:#f00">/</span>reverse<span style="color:#007f7f"># strings baby </span>
+<span style="color:#f00">/</span>lib64<span style="color:#f00">/</span>ld<span style="color:#f00">-</span>linux<span style="color:#f00">-</span>x86<span style="color:#ff0;font-weight:bold">-64</span>.so.<span style="color:#ff0;font-weight:bold">2</span>
+mgUa
+libc.so.<span style="color:#ff0;font-weight:bold">6</span>
+puts
+stdin
+fgets
+__cxa_finalize
+strcmp
+__libc_start_main
+GLIBC_2.<span style="color:#ff0;font-weight:bold">2.5</span>
+_ITM_deregisterTMCloneTable
+__gmon_start__
+_ITM_registerTMCloneTable
+u<span style="color:#f00">/</span>UH
+HTB<span style="color:#f00">{</span>B4BYH
+_R3V_TH4H
+TS_Ef
+[]A<span style="color:#f00">\</span>A]A<span style="color:#f00">^</span>A_
+Dont run <span style="color:#f00">`</span>strings<span style="color:#f00">`</span> on this challenge, that is not the way<span style="color:#f00">!!!!</span>
+Insert key<span style="color:#f00">:</span> 
+abcde122313
+Try again later.
+<span style="color:#f00">;*</span><span style="color:#ff0;font-weight:bold">3</span><span style="color:#f00">$&#34;</span>
+GCC<span style="color:#f00">:</span> <span style="color:#f00">(</span>Debian <span style="color:#ff0;font-weight:bold">9.2</span>.<span style="color:#ff0;font-weight:bold">1-8</span><span style="color:#f00">)</span> <span style="color:#ff0;font-weight:bold">9.2</span>.<span style="color:#ff0;font-weight:bold">1</span> <span style="color:#ff0;font-weight:bold">20190909</span>
+crtstuff.c
+deregister_tm_clones
+__do_global_dtors_aux
+completed.<span style="color:#ff0;font-weight:bold">7444</span>
+__do_global_dtors_aux_fini_array_entry
+frame_dummy
+__frame_dummy_init_array_entry
+baby.c
+</code></pre></div><figure>
+    <img src="https://www.natzsec.com/images/babyre2.png"
+         alt="Baby_RE, &amp;ldquo;Listing strings using Strings Utility&amp;rdquo; by natzsec"/> <figcaption>
+            <p>Baby_RE, &ldquo;Listing strings using Strings Utility&rdquo; by natzsec</p>
+        </figcaption>
+</figure>
+
+<p>We can notice that the it shows the flag too with <code>HTB{HTB{B4BYH _R3V_TH4H</code></p>
+<p>But since it does not have the ending curly brackets not sure if thats the end of it or not, so moving forward we can see it is mentioned &ldquo;Dont run <code>strings</code> on this challenge, that is not the way!!!!&rdquo;</p>
+<p>Just below it there is a string saying <code>Insert Key</code>, and there is also a string which is given right below it <code>abcde122313</code></p>
+<p>Let&rsquo;s try to run the program and see if we are getting the <code>Insert Key:</code> string.</p>
+<p>When we executed, it asked for a Insert Key if enter any wrong string it says <code>Try again later</code></p>
+<p>If we compare the <code>Try again later</code> string in our strings output we can see its having a string above it which the program might be comparing to.</p>
+<p>If we enter the string <code>abcde122313</code> it spits out the flag as we see in the below output.</p>
+<div class="highlight"><pre style="color:#e5e5e5;background-color:#000;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">root<span style="color:#f00">@</span>natzsec<span style="color:#f00">:~/</span>Desktop<span style="color:#f00">/</span>htb<span style="color:#f00">/</span>challenges<span style="color:#f00">/</span>reverse<span style="color:#007f7f"># ./baby </span>
+Insert key<span style="color:#f00">:</span> 
+abcde122313
+HTB<span style="color:#f00">{</span>B4BY_R3V_TH4TS_EZ<span style="color:#f00">}</span>
+root<span style="color:#f00">@</span>natzsec<span style="color:#f00">:~/</span>Desktop<span style="color:#f00">/</span>htb<span style="color:#f00">/</span>challenges<span style="color:#f00">/</span>reverse<span style="color:#007f7f"># </span>
+</code></pre></div><figure>
+    <img src="https://www.natzsec.com/images/babyreflag.png"
+         alt="Baby_RE, &amp;ldquo;Flag using Strings&amp;rdquo; by natzsec"/> <figcaption>
+            <p>Baby_RE, &ldquo;Flag using Strings&rdquo; by natzsec</p>
+        </figcaption>
+</figure>
+
+<p>As in this case Strings utility has played a major role in getting our flag. But this is not going to happen every time since many executable will be obsfucated to make it harder for the analysis.</p>
+<p>Let&rsquo;s take another way to get the flag using IDA PRO.</p>
+<p>Load the executable file into your IDA Pro.</p>
+<figure>
+    <img src="https://www.natzsec.com/images/Ida.png"
+         alt="Baby_RE, &amp;ldquo;Loading Baby_RE in IDA&amp;rdquo; by natzsec"/> <figcaption>
+            <p>Baby_RE, &ldquo;Loading Baby_RE in IDA&rdquo; by natzsec</p>
+        </figcaption>
+</figure>
+
+<p>Now just do not get confused, just click on <code>OK</code> with the default options.</p>
+<figure>
+    <img src="https://www.natzsec.com/images/mainfunc.png"
+         alt="Baby_RE, &amp;ldquo;main function in IDA&amp;rdquo; by natzsec"/> <figcaption>
+            <p>Baby_RE, &ldquo;main function in IDA&rdquo; by natzsec</p>
+        </figcaption>
+</figure>
+
+<p>So in the main function window, which is showing in the graph view.</p>
+<p>You can see that the <code>ASCII</code> characters of the input/output of the program, such as <code>Insert Key</code></p>
+<figure>
+    <img src="https://www.natzsec.com/images/ascii.png"
+         alt="Baby_RE, &amp;ldquo;main function in IDA&amp;rdquo; by natzsec"/> <figcaption>
+            <p>Baby_RE, &ldquo;main function in IDA&rdquo; by natzsec</p>
+        </figcaption>
+</figure>
+
+<p>We can see that there is <code>_strcmp</code> call which is possibily comparing the string which we are entering with the <code>abcde122313</code></p>
+<p>We can also see that the <code>JNZ</code> to a location which is showing the string <code>Try Again Later</code> This makes sense as if we enter the input as incorrect we will be getting <code>Try Again Later</code>.</p>
+<p>We can also view the hex view in the IDA for the same main function, it will show the flag details also.</p>
+<figure>
+    <img src="https://www.natzsec.com/images/hex.png"
+         alt="Baby_RE, &amp;ldquo;main function Hex in IDA&amp;rdquo; by natzsec"/> <figcaption>
+            <p>Baby_RE, &ldquo;main function Hex in IDA&rdquo; by natzsec</p>
+        </figcaption>
+</figure>
+
+<p>So here, we saw that we can use two different ways to get the flag.</p>
+<p>I hope you have enjoyed the Reversing this executable as much as I did writing my first blog.</p>
+
+  </article>
+</section>
+
+  
+
+      </div>
+
+      
+  <footer class="footer">
+    <section class="container">
+      
+        <p>Nothing is Secure!</p>
+      
+      
+        ©
+        
+          2019 -
+        
+        2020
+         Muktheeswaran (natzsec) 
+      
+      
+         · 
+        Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+      
+      
+        
+      
+    </section>
+  </footer>
+
+    </main>
+
+    
+
+    
+
+    <script>
+(function(f, a, t, h, o, m){
+	a[h]=a[h]||function(){
+		(a[h].q=a[h].q||[]).push(arguments)
+	};
+	o=f.createElement('script'),
+	m=f.getElementsByTagName('script')[0];
+	o.async=1; o.src=t; o.id='fathom-script';
+	m.parentNode.insertBefore(o,m)
+})(document, window, '//analytics.example.com/tracker.js', 'fathom');
+fathom('set', 'siteId', 'ABCDE');
+fathom('trackPageview');
+</script>
+
+
+  </body>
+
+</html>

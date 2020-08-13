@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reverses on natzsec</title>
+    <link>https://www.natzsec.com/reverse/</link>
+    <description>Recent content in Reverses on natzsec</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 13 Aug 2020 20:40:21 +0530</lastBuildDate>
+    
+	<atom:link href="https://www.natzsec.com/reverse/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Baby_RE</title>
+      <link>https://www.natzsec.com/reverse/baby_re/</link>
+      <pubDate>Thu, 13 Aug 2020 20:40:21 +0530</pubDate>
+      
+      <guid>https://www.natzsec.com/reverse/baby_re/</guid>
+      <description>Baby_RE We are going to do reverse engineering to get a Flag from the given Executable
+Download the file from the challege tab in Challenge &amp;gt; Reversing
+Download link : Baby_RE.
+Password: hackthebox
+Lets check what kind of file it is first.
+root@natzsec:~/Desktop/htb/challenges/reverse# file baby  baby: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=25adc53b89f781335a27bf1b81f5c4cb74581022, for GNU/Linux 3.2.0, not stripped   Baby_RE, &amp;ldquo;Details of file using file Utility&amp;rdquo; by natzsec</description>
+    </item>
+    
+  </channel>
+</rss>
