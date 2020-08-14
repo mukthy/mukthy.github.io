@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on natzsec</title>
+    <link>https://www.natzsec.com/projects/</link>
+    <description>Recent content in Projects on natzsec</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 14 Aug 2020 20:18:29 +0530</lastBuildDate>
+    
+	<atom:link href="https://www.natzsec.com/projects/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SQL Injection Basics</title>
+      <link>https://www.natzsec.com/projects/sql-injection-basics/</link>
+      <pubDate>Fri, 14 Aug 2020 20:18:29 +0530</pubDate>
+      
+      <guid>https://www.natzsec.com/projects/sql-injection-basics/</guid>
+      <description>SQL Injection Introduction: SQL injection is a web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. It generally allows an attacker to view data that they are not normally able to retrieve. This might include data belonging to other users, or any other data that the application itself is able to access. In many cases, an attacker can modify or delete this data, causing persistent changes to the application&amp;rsquo;s content or behavior.</description>
+    </item>
+    
+  </channel>
+</rss>

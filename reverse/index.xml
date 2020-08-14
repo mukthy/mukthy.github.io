@@ -6,7 +6,7 @@
     <description>Recent content in Reverses on natzsec</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 13 Aug 2020 20:40:21 +0530</lastBuildDate>
+    <lastBuildDate>Thu, 13 Aug 2020 23:25:31 +0530</lastBuildDate>
     
 	<atom:link href="https://www.natzsec.com/reverse/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Baby_RE</title>
       <link>https://www.natzsec.com/reverse/baby_re/</link>
-      <pubDate>Thu, 13 Aug 2020 20:40:21 +0530</pubDate>
+      <pubDate>Thu, 13 Aug 2020 23:25:31 +0530</pubDate>
       
       <guid>https://www.natzsec.com/reverse/baby_re/</guid>
       <description>Baby_RE We are going to do reverse engineering to get a Flag from the given Executable
